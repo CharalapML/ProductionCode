@@ -1,0 +1,29 @@
+name: cnn-individual-attributes tests
+
+on:
+  push:
+    paths:
+      - "cnn-individual-attributes/**"
+      - ".github/workflows/cnn-individual-attributes.yml"
+  pull_request:
+    paths:
+      - "cnn-individual-attributes/**"
+      - ".github/workflows/cnn-individual-attributes.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12"]
+    defaults:
+      run:
+        working-directory: cnn-individual-attributes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: pytest

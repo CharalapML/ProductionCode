@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cnn-individual-attributes"
+version = "1.0.0"
+description = "3D CNN encoder-decoder trained on a single seismic attribute per receiver trace"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.23",
+    "tensorflow>=2.13",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.5"]
+dev = ["pytest>=7", "matplotlib>=3.5"]
+
+[project.scripts]
+cnn-individual-attributes = "cnn_individual_attributes.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
