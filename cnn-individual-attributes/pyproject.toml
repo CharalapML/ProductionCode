@@ -7,7 +7,7 @@ name = "cnn-individual-attributes"
 version = "1.0.0"
 description = "3D CNN encoder-decoder trained on a single seismic attribute per receiver trace"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "numpy>=1.23",
     "tensorflow>=2.13",

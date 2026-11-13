@@ -37,11 +37,11 @@ multiple of 40.** With the original shapes (10 receivers × 8000 samples) the mo
 
 ## Install
 
-Requires Python ≥ 3.9.
+Requires Python 3.12 (other versions are rejected by `pip install`).
 
 ```bash
 cd cnn-individual-attributes
-python -m venv .venv && source .venv/bin/activate
+python3.12 -m venv .venv && source .venv/bin/activate
 pip install -e ".[plot]"        # add ,dev for the test dependencies
 ```
 
