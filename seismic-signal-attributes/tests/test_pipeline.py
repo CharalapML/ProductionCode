@@ -68,7 +68,7 @@ def test_results_do_not_depend_on_trace_order(built, traces):
 
 def test_single_trace_has_zero_cross_correlations():
     array, _ = build_attribute_array([Trace("R0", synthetic_signal(0), 20.0)])
-    for name in ("XcorrShiftAdded", "AllImpXcorrAdded"):
+    for name in ("XcorrShiftAdded", "AllImpXcorrAdded_additional"):
         assert not array[0, ATTRIBUTE_NAMES.index(name)].any()
 
 

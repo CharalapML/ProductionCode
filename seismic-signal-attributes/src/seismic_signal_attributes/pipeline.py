@@ -29,10 +29,10 @@ ATTRIBUTE_NAMES: Tuple[str, ...] = (
     "env_pos",                   # 5  approximate positive envelope
     "SigSplineScalePreSetGain",  # 6  signal × fixed-shape gain
     "XcorrShiftAdded",           # 7  sum of onset-aligned cross-correlations with the other traces
-    "AllImpACorr",               # 8  impulse autocorrelation
+    "AllImpXcorrAdded",          # 8  impulse autocorrelation (notebook featuresDict label)
     "AXcorrShiftAdded",          # 9  as 7, plus the trace's own autocorrelation
     "SigSplineScaleAmpRec",      # 10 signal ÷ fitted exponential decay
-    "AllImpXcorrAdded",          # 11 sum of impulse cross-correlations with the other traces
+    "AllImpXcorrAdded_additional", # 11 sum of impulse cross-correlations with the other traces
 )
 
 F1_LEAD_WARNING_S = 30.0
@@ -93,10 +93,10 @@ def build_attribute_array(traces: Sequence[Trace]) -> Tuple[np.ndarray, List[Dic
                 "env_pos": cf["env_pos"],
                 "SigSplineScalePreSetGain": preset_gain(signal, onset)[0],
                 "XcorrShiftAdded": xcorr_sum,
-                "AllImpACorr": impulse_correlation(signal, onset, impulse(signal, onset)),
+                "AllImpXcorrAdded": impulse_correlation(signal, onset, impulse(signal, onset)),
                 "AXcorrShiftAdded": xcorr_sum + aligned_correlation(signal, signal, onset),
                 "SigSplineScaleAmpRec": amp_rec,
-                "AllImpXcorrAdded": sum(
+                "AllImpXcorrAdded_additional": sum(
                     (
                         impulse_correlation(signal, onset, impulse(scaled[k], onsets[k]))
                         for k in range(len(traces))

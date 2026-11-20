@@ -53,10 +53,10 @@ zero-padded at the end.
 | 5     | `env_pos`                  | 8-sample mean of \|x\| × 1.5 (approximate envelope) |
 | 6     | `SigSplineScalePreSetGain` | signal × fixed gain: 1.01^(i−onset) before, 1 for 200 samples, then rising to 2 |
 | 7     | `XcorrShiftAdded`          | sum of onset-aligned full cross-correlations with the other traces |
-| 8     | `AllImpACorr`              | the trace's own 60-sample onset impulse slid along the trace |
+| 8     | `AllImpXcorrAdded`         | the trace's own 60-sample onset impulse slid along the trace |
 | 9     | `AXcorrShiftAdded`         | as 7, plus the trace's own aligned autocorrelation |
 | 10    | `SigSplineScaleAmpRec`     | signal ÷ fitted exponential decay |
-| 11    | `AllImpXcorrAdded`         | sum of every *other* trace's onset impulse slid along this trace |
+| 11    | `AllImpXcorrAdded_additional` | sum of every *other* trace's onset impulse slid along this trace |
 
 The window lengths are in samples and were chosen for 20 Hz data. By default, traces
 at any other rate are skipped with a warning.
@@ -147,6 +147,4 @@ correlations.
   the reset-time and zeroed-signal columns, and the commented-out skew attributes. The
   notebook's check that warns when the F1cf peak is more than 30 s before the largest
   amplitude is kept, as a log warning.
-- The notebook's `featuresDict` labelled index 8 `AllImpXcorrAdded`, but it holds the
-  impulse *auto*correlation. It is named `AllImpACorr` here.
 - Exploratory plots are not included. `--plot` writes one summary figure per trace.
